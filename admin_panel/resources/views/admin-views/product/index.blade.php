@@ -300,7 +300,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+
+                
+               <div class="col-lg-6">
                     <div class="card shadow--card-2 border-0">
                         <div class="card-header">
                             <h5 class="card-title">
@@ -313,30 +315,26 @@
                                 <div class="col-sm-6">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
-                                            for="exampleFormControlInput1">{{ translate('messages.available_time_starts') }}<span class="form-label-secondary text-danger"
-                                            data-toggle="tooltip" data-placement="right"
-                                            data-original-title="{{ translate('messages.Required.')}}"> *
-                                            </span></label>
+                                            for="exampleFormControlInput1">{{ translate('messages.available_time_starts') }}</label>
                                         <input type="time" name="available_time_starts" class="form-control"
                                             id="available_time_starts"
-                                            placeholder="{{ translate('messages.Ex:_10:30_am') }} " required>
+                                            placeholder="{{ translate('messages.Ex:_10:30_am') }}">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
-                                            for="exampleFormControlInput1">{{ translate('messages.available_time_ends') }}<span class="form-label-secondary text-danger"
-                                            data-toggle="tooltip" data-placement="right"
-                                            data-original-title="{{ translate('messages.Required.')}}"> *
-                                            </span></label>
+                                            for="exampleFormControlInput1">{{ translate('messages.available_time_ends') }}</label>
                                         <input type="time" name="available_time_ends" class="form-control"
-                                            id="available_time_ends" placeholder="5:45 pm" required>
+                                            id="available_time_ends" placeholder="5:45 pm">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                
                 <div class="col-lg-12">
                     <div class="card shadow--card-2 border-0">
                         <div class="card-header">
