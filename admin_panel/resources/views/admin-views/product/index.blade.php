@@ -307,7 +307,7 @@
                         <div class="card-header">
                             <h5 class="card-title">
                                 <span class="card-header-icon mr-2"><i class="tio-date-range"></i></span>
-                                <span>{{ translate('messages.Availability') }}</span>
+                                <span>New Availability Card</span>
                             </h5>
                         </div>
                         <div class="card-body">
