@@ -302,37 +302,7 @@
                 </div>
 
                 
-               <div class="col-lg-6">
-                    <div class="card shadow--card-2 border-0">
-                        <div class="card-header">
-                            <h5 class="card-title">
-                                <span class="card-header-icon mr-2"><i class="tio-date-range"></i></span>
-                                <span>New Availability Card</span>
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row g-2">
-                                <div class="col-sm-6">
-                                    <div class="form-group mb-0">
-                                        <label class="input-label"
-                                            for="exampleFormControlInput1">{{ translate('messages.available_time_starts') }}</label>
-                                        <input type="time" name="available_time_starts" class="form-control"
-                                            id="available_time_starts"
-                                            placeholder="{{ translate('messages.Ex:_10:30_am') }}">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group mb-0">
-                                        <label class="input-label"
-                                            for="exampleFormControlInput1">{{ translate('messages.available_time_ends') }}</label>
-                                        <input type="time" name="available_time_ends" class="form-control"
-                                            id="available_time_ends" placeholder="5:45 pm">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
                 
                 <div class="col-lg-12">
