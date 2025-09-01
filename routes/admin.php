@@ -315,6 +315,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
 
         Route::group(['prefix' => 'order', 'as' => 'order.', 'middleware' => ['module:order']], function () {
             Route::get('list/{status}', 'OrderController@list')->name('list');
+            Route::get('evening-delivery/{status}', 'OrderController@evening_delivery_list')->name('evening-delivery');
             Route::get('details/{id}', 'OrderController@details')->name('details');
             Route::get('status', 'OrderController@status')->name('status');
             Route::get('view/{id}', 'OrderController@view')->name('view');

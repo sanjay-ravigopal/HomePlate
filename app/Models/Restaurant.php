@@ -30,6 +30,7 @@ class Restaurant extends Model
         'status'=>'integer',
         'delivery'=>'boolean',
         'take_away'=>'boolean',
+        'evening_delivery'=>'boolean',
         'zone_id'=>'integer',
         'food_section'=>'boolean',
         'reviews_section'=>'boolean',

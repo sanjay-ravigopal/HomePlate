@@ -96,7 +96,7 @@ class OrderController extends Controller
         $validator = Validator::make($request->all(), [
             'order_amount' => 'required',
             'payment_method'=>'required|in:cash_on_delivery,digital_payment,wallet,offline_payment',
-            'order_type' => 'required|in:take_away,delivery,dine_in',
+            'order_type' => 'required|in:take_away,delivery,dine_in,delivery_evening',
             'restaurant_id' => 'required',
             'distance' => 'required_if:order_type,delivery',
             'address' => 'required_if:order_type,delivery',
@@ -1382,6 +1382,16 @@ class OrderController extends Controller
                 'message' => 'Home_delivery_is_disabled',
                 'status' => 403
             ],
+            ($settings['home_delivery'] ?? 0) == 0 && $request->order_type == 'delivery_evening' => [
+                'code' => 'home_delivery',
+                'message' => 'Home_delivery_is_disabled',
+                'status' => 403
+            ],
+            !$restaurant->evening_delivery && $request->order_type == 'delivery_evening' => [
+                'code' => 'evening_delivery',
+                'message' => 'Evening_delivery_is_disabled_for_this_restaurant',
+                'status' => 403
+            ],
             ($settings['take_away'] ?? 0) == 0 && $request->order_type == 'take_away' => [
                 'code' => 'take_away',
                 'message' =>  'Take_away_is_disabled',
@@ -1465,6 +1475,12 @@ class OrderController extends Controller
             return ['max_cod_order_amount_value' => 0,'vehicle_id' => null,'original_delivery_charge' => 0 ,'delivery_charge' => $delivery_charge];
         }
 
+        // Handle evening delivery with fixed charge
+        if($request['order_type'] == 'delivery_evening')
+        {
+            return ['max_cod_order_amount_value' => 0,'vehicle_id' => null,'original_delivery_charge' => 1.5 ,'delivery_charge' => 1.5];
+        }
+
         $per_km_shipping_charge = 0;
         $minimum_shipping_charge = 0;
         $maximum_shipping_charge =  0;
@@ -1544,7 +1560,7 @@ class OrderController extends Controller
     public function check_restaurant_validation(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'order_type' => 'required|in:take_away,delivery,dine_in',
+            'order_type' => 'required|in:take_away,delivery,dine_in,delivery_evening',
             'restaurant_id' => 'required',
         ]);
 

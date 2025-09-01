@@ -296,6 +296,43 @@
                         </div>
                     </div>
 
+                    <div class="col-xl-4 col-md-4 col-sm-6">
+                        <div class="form-group mb-0">
+                            <label
+                                class="toggle-switch toggle-switch-sm d-flex justify-content-between border  rounded px-3 form-control"
+                                for="evening_delivery">
+                            <span class="pr-2 d-flex">
+                                <span class="line--limit-1">
+                                    {{translate('messages.Evening Delivery')}}
+                                </span>
+                                <span data-toggle="tooltip" data-placement="right"
+                                      data-original-title='{{translate("When_enabled,_customers_can_place_evening_delivery_orders_(6-9_PM)_from_this_restaurant.")}}'
+                                      class="input-label-secondary">
+                                    <i class="tio-info-outined"></i>
+                                </span>
+                            </span>
+                                <input type="checkbox"
+                                       data-id="evening_delivery"
+                                        data-type="status"
+                                        data-image-on="{{ dynamicAsset('/public/assets/admin/img/modal/dm-self-reg-on.png') }}"
+                                        data-image-off="{{ dynamicAsset('/public/assets/admin/img/modal/dm-self-reg-off.png') }}"
+                                        data-title-on="{{ translate('Want_to_enable_evening_delivery_for_this_restaurant?') }}"
+                                        data-title-off="{{ translate('Want_to_disable_evening_delivery_for_this_restaurant?') }}"
+                                        data-text-on="<p>{{ translate('If_enabled,_the_evening_delivery_feature_will_be_available_for_the_restaurant.') }}</p>"
+                                        data-text-off="<p>{{ translate('If_disabled,_the_evening_delivery_feature_will_be_hidden_from_the_restaurant.') }}</p>"
+                                        class="toggle-switch-input dynamic-checkbox"
+                                       id="evening_delivery" {{$restaurant->evening_delivery?'checked':''}}>
+                                <span class="toggle-switch-label">
+                                <span class="toggle-switch-indicator"></span>
+                            </span>
+                            </label>
+                            <form
+                                action="{{route('admin.restaurant.toggle-settings',[$restaurant->id,$restaurant->evening_delivery?0:1, 'evening_delivery'])}}"
+                                method="get" id="evening_delivery_form">
+                            </form>
+                        </div>
+                    </div>
+
                     @if (isset($order_subscription) && $order_subscription->value == 1)
                         <div class="col-xl-4 col-md-4 col-sm-6">
                             <div class="form-group mb-0">

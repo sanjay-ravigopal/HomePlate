@@ -764,6 +764,7 @@ class Helpers
                 $item['delivery_fee'] = self::getDeliveryFee($item);
 
                 $item['restaurant_status'] = (int) $item->status;
+                $item['evening_delivery'] = (bool) $item->evening_delivery;
                 $item['cuisine'] = $item->cuisine;
 
                 if ($item->opening_time) {
@@ -819,6 +820,7 @@ class Helpers
                 $data['self_delivery_system'] = (int) $data->restaurant_sub->self_delivery;
             }
             $data['restaurant_status'] = (int) $data->status;
+            $data['evening_delivery'] = (bool) $data->evening_delivery;
             if ($data->opening_time) {
                 $data['available_time_starts'] = $data->opening_time->format('H:i');
                 unset($data['opening_time']);

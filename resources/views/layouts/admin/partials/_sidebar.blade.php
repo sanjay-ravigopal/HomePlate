@@ -8,6 +8,7 @@ $order = Cache::rememberForever('order_stats_summary', function () {
         ->selectRaw('
             COUNT(*) as total,
             COUNT(CASE WHEN order_type = "dine_in" THEN 1 END) as dine_in,
+            COUNT(CASE WHEN order_type = "delivery_evening" THEN 1 END) as evening_delivery,
             COUNT(CASE WHEN order_status = "delivered" THEN 1 END) as delivered,
             COUNT(CASE WHEN order_status = "canceled" THEN 1 END) as canceled,
             COUNT(CASE WHEN order_status = "failed" THEN 1 END) as failed,
@@ -292,6 +293,20 @@ $order_sch = Cache::rememberForever('order_scheduled_stats', function () {
                                             {{ translate('messages.dine_in') }}
                                             <span class="badge badge-soft-info badge-pill ml-1">
                                                 {{ $order->dine_in }}
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li
+                                    class="nav-item {{ Request::is('admin/order/evening-delivery*') ? 'active' : '' }}">
+                                    <a class="nav-link " href="{{ route('admin.order.evening-delivery', ['all']) }}"
+                                        title="{{ translate('Evening Delivery Orders') }}">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate sidebar--badge-container">
+                                            {{ translate('Evening Delivery') }}
+                                            <span class="badge badge-soft-warning badge-pill ml-1">
+                                                {{ \App\Models\Order::where('order_type', 'delivery_evening')->Notpos()->HasSubscriptionToday()->count() }}
                                             </span>
                                         </span>
                                     </a>

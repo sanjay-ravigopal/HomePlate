@@ -57,7 +57,7 @@ class VendorController extends Controller
           ->where(function($query) use($data){
                 return $query->whereNotIn('order_status',(config('order_confirmation_model') == 'restaurant'|| $data)?['failed','canceled', 'refund_requested', 'refunded']:['pending','failed','canceled', 'refund_requested', 'refunded'])
                 ->orWhere(function($query){
-                    return $query->where('order_status','pending')->whereIn('order_type', ['take_away','dine_in']);
+                    return $query->where('order_status','pending')->whereIn('order_type', ['take_away','dine_in','delivery_evening']);
                 });
             })->Notpos()->HasSubscriptionToday()->NotDigitalOrder()
             ->count();
@@ -269,7 +269,7 @@ class VendorController extends Controller
                         $query->where('payment_status','paid')->where('order_status', 'accepted');
                     })
                     ->orWhere(function($query){
-                        $query->where('order_status','pending')->whereIn('order_type', ['take_away' , 'dine_in']);
+                        $query->where('order_status','pending')->whereIn('order_type', ['take_away' , 'dine_in', 'delivery_evening']);
                     });
             }
         })
@@ -389,7 +389,7 @@ class VendorController extends Controller
             $data = 1;
         }
 
-        if($request['status'] == "confirmed" && !$data && config('order_confirmation_model') == 'deliveryman' && !in_array($order['order_type'],['dine_in','take_away']) && $order->subscription_id == null)
+        if($request['status'] == "confirmed" && !$data && config('order_confirmation_model') == 'deliveryman' && !in_array($order['order_type'],['dine_in','take_away','delivery_evening']) && $order->subscription_id == null)
         {
             return response()->json([
                 'errors' => [
@@ -407,7 +407,7 @@ class VendorController extends Controller
             ], 403);
         }
 
-        if($request['status'] == 'delivered' && !in_array($order['order_type'],['dine_in','take_away']) && !$data)
+        if($request['status'] == 'delivered' && !in_array($order['order_type'],['dine_in','take_away','delivery_evening']) && !$data)
         {
             return response()->json([
                 'errors' => [
@@ -929,7 +929,7 @@ class VendorController extends Controller
                     $query->where('payment_status','paid')->where('order_status', 'accepted');
                 })
                 ->orWhere(function($query){
-                    $query->where('order_status','pending')->where('order_type', 'take_away');
+                    $query->where('order_status','pending')->whereIn('order_type', ['take_away', 'delivery_evening']);
                 });
             }
         })
