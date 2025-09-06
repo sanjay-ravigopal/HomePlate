@@ -15,10 +15,15 @@ https://getcomposer.org/Composer-Setup.exe
 THEN run 
 php --ini
 to see where php.ini. Open "php.ini" in notepad and uncomment 
-extension=fileinfo,
-extension=sodium,
-extension=zip,
+extension=pdo_mysql
+extension=mysqli
+extension=openssl
+extension=mbstring
+extension=curl
+extension=fileinfo
+extension=zip
 extension=gd
+extension=sodium
 
 which will look like 
 ";extension=fileinfo" -> extension=fileinfo
@@ -27,7 +32,10 @@ THEN clone this repo.
 
 cd into it. 
 run "composer install"
+
 then "cp .env.example .env" (creates env file that you can later change)
+
+
 then "php artisan key:generate"
 then "php artisan serve"
 
