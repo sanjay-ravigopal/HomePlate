@@ -12,6 +12,12 @@ Copy php.ini-development → php.ini
 INSTALL COMPOSER:
 https://getcomposer.org/Composer-Setup.exe
 
+
+INSTALL MYSQL
+run "winget install Oracle.MySQL"
+then (setx PATH "$env:PATH;C:\Program Files\MySQL\MySQL Server 8.4\bin")
+
+
 THEN run 
 php --ini
 to see where php.ini. Open "php.ini" in notepad and uncomment 
@@ -37,6 +43,10 @@ then "cp .env.example .env" (creates env file that you can later change)
 
 
 then "php artisan key:generate"
+
+Then set up MYSQL DB with stackfood formatted sql file and adjust password/connection details in env
+
+then "php artisan serve"
 then "php artisan serve"
 
 
